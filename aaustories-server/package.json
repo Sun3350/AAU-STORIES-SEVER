@@ -1,9 +1,9 @@
 {
   "name": "aaustories-server",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "Index.js",
   "scripts": {
-    "start": "nodemon api/index.js ",
+    "start": "nodemon api/Index.js ",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

@@ -30,12 +30,13 @@ mongoose.connect('mongodb+srv://AAUSTORIES:AAUSTORIES2024@aaustories.qdygy.mongo
 // Middleware
 app.use(bodyParser.json());
 app.use(
-    cors({
-      origin: 'http://localhost:3000', 
-      methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-      allowedHeaders: 'Content-Type,Authorization',
-    })
-  );
+  cors({
+    origin: ['http://localhost:3000', 'https://aau-stories.vercel.app'],
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  })
+);
+
   
   app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
   app.use(bodyParser.json());

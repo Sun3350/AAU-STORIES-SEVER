@@ -31,7 +31,8 @@ mongoose.connect('mongodb+srv://AAUSTORIES:AAUSTORIES2024@aaustories.qdygy.mongo
 app.use(bodyParser.json());
 app.use(
   cors({
-    origin: ['http://localhost:3000', 'https://aau-stories.vercel.app/'],
+   // origin: ['http://localhost:3000', 'https://aau-stories.vercel.app/'],
+    origin: 'https://aau-stories.vercel.app/',
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     allowedHeaders: 'Content-Type,Authorization',
   })

@@ -9,6 +9,7 @@ const Confession = require('../model/Comfession')
 const Topic = require('../model/Topic');
 const Meme = require('../model/Meme')
 const Blog = require('../model/Blog');
+const ChatMessage = require('../model/ChatMessage');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const AdminUser = require('../model/AdminUser');
@@ -381,7 +382,14 @@ router.post('/admin-login', async (req, res) => {
   res.json({ token });
 });
 
-
+router.get('/chat-history', async (req, res) => {
+  try {
+    const chatHistory = await ChatMessage.find({ room: 'adminRoom' }).sort({ timestamp: 1 }).exec();
+    res.json(chatHistory); // Return chat history to the frontend
+  } catch (error) {
+    res.status(500).json({ message: 'Error fetching chat history', error });
+  }
+});
 
   // Backend: Schedule job to delete confessions older than 24 hours
 const cron = require('node-cron');

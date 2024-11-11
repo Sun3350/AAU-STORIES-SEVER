@@ -16,7 +16,7 @@ const AdminUser = require('../model/AdminUser');
 const  generateRandomSecret = require('../config/generateSecretKey')
 
 const secretKey = generateRandomSecret();
-console.log('Generated Secret Key:', secretKey); 
+console.log('Generated Secret Key:', secretKey)
 
 
 const storage = new CloudinaryStorage({

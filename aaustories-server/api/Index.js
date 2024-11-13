@@ -16,9 +16,15 @@ const io = new Server(server, {
     origin: 'https://aau-stories.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
   },
 });
-
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "https://aau-stories.vercel.app");
+  res.header("Access-Control-Allow-Methods", "GET, POST");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 // MongoDB connection
 mongoose.connect(
   'mongodb+srv://AAUSTORIES:AAUSTORIES2024@aaustories.qdygy.mongodb.net/?retryWrites=true&w=majority&appName=AAUSTORIES',

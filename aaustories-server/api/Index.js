@@ -11,12 +11,11 @@ require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app); // Create the server using http
-const io = new Server(server, {
+const io = socketIo(server, {
   cors: {
-    origin: 'https://aau-stories.vercel.app',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
+    origin: "https://aau-stories.vercel.app", // The frontend domain
+    methods: ["GET", "POST"],
+    credentials: true,
   },
 });
 app.use((req, res, next) => {

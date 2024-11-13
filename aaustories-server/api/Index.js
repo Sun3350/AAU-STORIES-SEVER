@@ -13,7 +13,7 @@ const app = express();
 const server = http.createServer(app); // Create the server using http
 const io = new Server(server, {
   cors: {
-    origin: ['http://localhost:3000', 'https://aau-stories.vercel.app'],
+    origin: 'https://aau-stories.vercel.app',
     methods: ['GET', 'POST'],
     allowedHeaders: ['Content-Type', 'Authorization'],
   },

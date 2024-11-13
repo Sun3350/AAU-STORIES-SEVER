@@ -6,15 +6,16 @@ const path = require('path');
 const mongoose = require('mongoose');
 const http = require('http'); // Import http for creating the server
 const socketSetup = require('../routes/Socket'); // Import the Socket.IO setup
-
+const { Server } = require("socket.io");
 require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app); // Create the server using http
-const io = require('socket.io')(server, {
+const io = new Server(server, {
   cors: {
-    origin:  'https://aau-stories.vercel.app',
+    origin: ['http://localhost:3000', 'https://aau-stories.vercel.app'],
     methods: ['GET', 'POST'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   },
 });
 

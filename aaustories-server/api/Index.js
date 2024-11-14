@@ -5,26 +5,11 @@ const cors = require('cors');
 const path = require('path');
 const mongoose = require('mongoose');
 const http = require('http'); // Import http for creating the server
-const socketSetup = require('../routes/Socket'); // Import the Socket.IO setup
-const { Server } = require("socket.io");
 require('dotenv').config();
 
 const app = express();
 const server = http.createServer(app); // Create the server using http
-const io = new Server(server, {
-  cors: {
-    origin: 'https://aau-stories.vercel.app',
-    methods: ['GET', 'POST'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-  },
-});
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://aau-stories.vercel.app");
-  res.header("Access-Control-Allow-Methods", "GET, POST");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
+
 // MongoDB connection
 mongoose.connect(
   'mongodb+srv://AAUSTORIES:AAUSTORIES2024@aaustories.qdygy.mongodb.net/?retryWrites=true&w=majority&appName=AAUSTORIES',
@@ -64,7 +49,6 @@ app.get('/', (req, res) => {
 app.use('/api/users', userRoutes);
 
 // Setup Socket.IO
-socketSetup(io); // Pass the `io` instance to the socket setup
 
 // Start the server
 const PORT = process.env.PORT || 5000;
